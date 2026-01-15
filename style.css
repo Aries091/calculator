@@ -1,70 +1,150 @@
+:root{
+    --bg-0: #0b1020;
+    --bg-1: #121a33;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-2: rgba(255, 255, 255, 0.12);
+    --border: rgba(255, 255, 255, 0.14);
+    --text: rgba(255, 255, 255, 0.92);
+    --muted: rgba(255, 255, 255, 0.72);
 
+    --digit: rgba(255, 255, 255, 0.12);
+    --digit-hover: rgba(255, 255, 255, 0.18);
+    --op: #ff9f1c;
+    --op-hover: #ffb34d;
+    --equal: #22c55e;
+    --equal-hover: #34d399;
+    --danger: #ef4444;
+    --danger-hover: #f87171;
+
+    --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    --radius: 18px;
+}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    }
-    body{
-        min-height: 100vh;
-        background: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .calculator{
-    width:300px;
-    height: 500px;
-     box-shadow:  4px 4px 30px black;
-     background-color: white;
-    }
-    form input{
+}
 
-        width: 100%;
-        height: 90px;
-        border: none;
-        font-size: 2rem;
-        border-radius: 0px;
-        padding: 1rem;
-        color: white;
-        background-color: black;
-        text-align: right;
-        pointer-events: auto;
-    }
-    .buttons{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding:20px;
+body{
+    min-height: 100vh;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    background:
+        radial-gradient(900px 500px at 20% 10%, rgba(99, 102, 241, 0.35), transparent 60%),
+        radial-gradient(700px 450px at 85% 30%, rgba(34, 197, 94, 0.22), transparent 55%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1));
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
 
-    }
+.calculator{
+    width: min(380px, 92vw);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
 
+form{
+    padding: 18px 18px 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
+}
 
+form input{
+    width: 100%;
+    height: 88px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 14px;
+    color: var(--text);
+    background: rgba(0, 0, 0, 0.35);
+    text-align: right;
+    font-size: 2.2rem;
+    font-weight: 650;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+form input::placeholder{
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 14px 18px 18px;
+}
+
+button{
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--digit);
+    color: var(--text);
+    width: 100%;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 650;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 90ms ease, background-color 140ms ease, border-color 140ms ease, filter 140ms ease;
+    user-select: none;
+}
+
+button:hover{
+    background: var(--digit-hover);
+}
+
+button:active{
+    transform: translateY(1px) scale(0.99);
+}
+
+button:focus-visible{
+    outline: 2px solid rgba(99, 102, 241, 0.8);
+    outline-offset: 2px;
+}
+
+.btn-yellow{
+    background: color-mix(in srgb, var(--op) 86%, transparent);
+    border-color: color-mix(in srgb, var(--op) 55%, var(--border));
+    color: #1b1200;
+}
+
+.btn-yellow:hover{
+    background: color-mix(in srgb, var(--op-hover) 88%, transparent);
+}
+
+.btn-equal{
+    background: color-mix(in srgb, var(--equal) 86%, transparent);
+    border-color: color-mix(in srgb, var(--equal) 55%, var(--border));
+    color: #052012;
+}
+
+.btn-equal:hover{
+    background: color-mix(in srgb, var(--equal-hover) 88%, transparent);
+}
+
+.btn-clear{
+    background: color-mix(in srgb, var(--danger) 86%, transparent);
+    border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+    color: #240606;
+}
+
+.btn-clear:hover{
+    background: color-mix(in srgb, var(--danger-hover) 88%, transparent);
+}
+
+.btn-grey{
+    background: rgba(255, 255, 255, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce){
     button{
-        flex: 0 0 22%;
-        margin: 5px 0;
-        border: 1px solid black;
-        width: 60px;
-        height: 52px;
-        font-size: 22px;
-        font-weight: 600;
-        border-radius: 5px;
-        cursor: pointer;
+        transition: none;
     }
-    .btn-yellow{
-        background-color: orange;
-        color:white;
-    }
-    .btn-grey{
-        background-color: silver;
-        color:black;
-    }
-    .btn-equal{
-        background-color: green;
-        color:yellow;
-    }
-    .btn-clear{
-        background-color: red;
-        color: black;
-    }
+}
 
